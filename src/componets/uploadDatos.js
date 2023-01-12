@@ -15,7 +15,7 @@ function convertCSVToJSON(csv) {
   return new Promise((resolve, reject) => {
     Papa.parse(csv, {
       header: true,
-      dynamicTyping: true,
+      dynamicTyping: false, // Deshabilita la conversión dinámica de tipos
       complete: function (results) {
         resolve(results.data);
       },
@@ -30,7 +30,6 @@ async function handleFileSelect(e) {
   const file = e.target.files[0];
   const reader = new FileReader();
   reader.onload = async function (e) {
-    console.log("Contenido del archivo:", e.target.result);
     try {
       const csv = e.target.result;
       const json = await convertCSVToJSON(csv);
@@ -40,10 +39,10 @@ async function handleFileSelect(e) {
       });
       NotificationManager.success("Archivo subido con éxito", "Éxito");
     } catch (error) {
-      console.error("Error al leer el archivo:", error);
       NotificationManager.error("Error al subir el archivo", "Error");
     }
   };
+  alert("Archivo Subido con Exito");
   reader.readAsText(file);
 }
 

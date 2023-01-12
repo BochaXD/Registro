@@ -8,7 +8,7 @@ import {
   deleteDoc,
   doc,
 } from "firebase/firestore";
-const userCollectionRef = collection(db, "prueba");
+const userCollectionRef = collection(db, "cedulas");
 const userCollectionRefUser = collection(db, "usuarios");
 class UserServices {
   addBase = (newBase) => {
